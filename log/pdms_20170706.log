@@ -1,0 +1,126 @@
+[2017/07/06 15:17:24 CST] [DEBG] (main.initLogger:72) Current time is : 15:17:24 CST 2017/07/06
+[2017/07/06 15:17:24 CST] [DEBG] (dbopr.GetDbConn:90) 开始连接mysql数据库...
+[2017/07/06 15:17:24 CST] [DEBG] (dbopr.GetDbConn:114) 连接mysql数据库成功!
+[2017/07/06 15:18:22 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: 3mDOcjVw0JLRITJy8MxnCUcs5YgB60oKtq7cRmqKBQ8%3D
+[2017/07/06 15:18:29 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:18:29 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:18:32 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:18:32 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:18:36 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:18:54 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: 3mDOcjVw0JLRITJy8MxnCUcs5YgB60oKtq7cRmqKBQ8%3D
+[2017/07/06 15:20:29 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/06 15:20:29 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/06 15:20:29 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/06 15:20:32 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: 70kUaPkR-l1yL2LagGnZCw_ku12hiqLn30GJ1WHCF7M%3D
+[2017/07/06 15:20:48 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:20:48 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:20:51 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:20:51 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:21:00 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/06 15:21:00 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/06 15:21:00 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/06 15:21:00 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/06 15:21:04 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: 70kUaPkR-l1yL2LagGnZCw_ku12hiqLn30GJ1WHCF7M%3D
+[2017/07/06 15:21:06 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: 1-CAsWlcmxuh-d5Gd5Dk_giaFh5ckorRUIKMzc_JtCE%3D
+[2017/07/06 15:21:14 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:21:14 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:21:22 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:21:22 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:21:28 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:21:28 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:21:44 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: 1-CAsWlcmxuh-d5Gd5Dk_giaFh5ckorRUIKMzc_JtCE%3D
+[2017/07/06 15:22:05 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/06 15:22:05 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/06 15:22:05 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/06 15:22:06 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: W9vIMOFGAydB70Mdh2P378SgupXikzQRS_7FUfGEvQA%3D
+[2017/07/06 15:22:11 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:22:11 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:22:24 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: W9vIMOFGAydB70Mdh2P378SgupXikzQRS_7FUfGEvQA%3D
+[2017/07/06 15:23:07 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/06 15:23:07 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/06 15:23:07 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/06 15:23:11 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: jfeAZWLRC7n3f7kb-nxCeLvoyscfx-5ArZj1-j-QqWU%3D
+[2017/07/06 15:23:24 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: jfeAZWLRC7n3f7kb-nxCeLvoyscfx-5ArZj1-j-QqWU%3D
+[2017/07/06 15:25:53 CST] [DEBG] (main.initLogger:72) Current time is : 15:25:53 CST 2017/07/06
+[2017/07/06 15:25:53 CST] [DEBG] (dbopr.GetDbConn:90) 开始连接mysql数据库...
+[2017/07/06 15:25:53 CST] [DEBG] (dbopr.GetDbConn:114) 连接mysql数据库成功!
+[2017/07/06 15:25:57 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/06 15:25:57 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/06 15:25:57 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/06 15:25:59 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: H8WAR0-3zG4iTi_OjHbyjpw4zdHSrxWnikqkZKTDC6s%3D
+[2017/07/06 15:26:07 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:26:07 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:26:12 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:38:32 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: 4tHJZYGzVbwYZSmdTMfYYIameM1IIX9KhkAFJKN3QRI%3D
+[2017/07/06 15:38:41 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:38:41 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:38:48 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:38:48 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:38:50 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:38:50 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:38:55 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:38:55 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:49:22 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: lpMWkJVRYRMUXTcYSVJ905RdZG8ZEShNgG1MKWAuoDU%3D
+[2017/07/06 15:49:27 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:49:27 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:49:28 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:49:28 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:49:29 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:49:29 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:49:29 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:49:29 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:49:29 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:49:29 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:49:32 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:49:32 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:50:23 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:50:23 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:50:27 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:50:27 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:50:46 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:50:46 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:51:00 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/06 15:51:00 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/06 15:51:00 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/06 15:51:00 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/06 15:51:15 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: 6t1jRtFjjwJM6h330kBvdfogiNCRRpdBQZ_-xwjhWts%3D
+[2017/07/06 15:51:20 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:51:20 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:52:28 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:52:28 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:52:33 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 15:52:33 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 15:53:49 CST] [DEBG] (server.ReadMessage:56) ============用户退出，删除相应的session============
+[2017/07/06 15:53:49 CST] [DEBG] (session.(*SessionMgr).EndSession:74) 删除session, sessionID: 6t1jRtFjjwJM6h330kBvdfogiNCRRpdBQZ_-xwjhWts%3D
+[2017/07/06 16:25:53 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: H8WAR0-3zG4iTi_OjHbyjpw4zdHSrxWnikqkZKTDC6s%3D
+[2017/07/06 16:25:53 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: 4tHJZYGzVbwYZSmdTMfYYIameM1IIX9KhkAFJKN3QRI%3D
+[2017/07/06 16:25:53 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: lpMWkJVRYRMUXTcYSVJ905RdZG8ZEShNgG1MKWAuoDU%3D
+[2017/07/06 17:00:57 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: RonI4Hph8Nbg3DH5Oipj-dkUY2uHDk4AdVB-xPL4-wg%3D
+[2017/07/06 17:01:25 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 17:01:25 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 17:01:35 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 17:01:35 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 17:01:42 CST] [EROR] (server.titleIsExist:119) titleIsExist ==> strCnt: %!(EXTRA string=0)
+[2017/07/06 17:01:42 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 17:01:48 CST] [DEBG] (server.ReadMessage:56) ============用户退出，删除相应的session============
+[2017/07/06 17:01:48 CST] [DEBG] (session.(*SessionMgr).EndSession:74) 删除session, sessionID: RonI4Hph8Nbg3DH5Oipj-dkUY2uHDk4AdVB-xPL4-wg%3D
+[2017/07/06 17:05:33 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: uQOFUkblund-sJn3XcQjgjKOIta9gABeZDuNQDUXUqA%3D
+[2017/07/06 17:06:06 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: 7IoYONdNmm7sC2nwtwE-5qvUm1HoR_4n5j7DCG2kMSg%3D
+[2017/07/06 17:06:09 CST] [DEBG] (server.ReadMessage:56) ============用户退出，删除相应的session============
+[2017/07/06 17:06:09 CST] [DEBG] (session.(*SessionMgr).EndSession:74) 删除session, sessionID: 7IoYONdNmm7sC2nwtwE-5qvUm1HoR_4n5j7DCG2kMSg%3D
+[2017/07/06 17:06:16 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: PqODJuKGIFbSXx60FrBlLbXS6-0T0k-gkIurbK4M1GY%3D
+[2017/07/06 17:06:30 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: gy3Q-MtlrhAmXYUymdDnGHO4LCCcKpEKzlJ2Xh-IQ24%3D
+[2017/07/06 17:06:42 CST] [DEBG] (server.ReadMessage:56) ============用户退出，删除相应的session============
+[2017/07/06 17:06:42 CST] [DEBG] (session.(*SessionMgr).EndSession:74) 删除session, sessionID: gy3Q-MtlrhAmXYUymdDnGHO4LCCcKpEKzlJ2Xh-IQ24%3D
+[2017/07/06 17:06:46 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/06 17:06:46 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/06 17:06:46 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/06 17:06:46 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/06 17:06:50 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: meQmXtdeCNGlH5k0EGlDIm6XBdCOTfQWZM2gSnLi46s%3D
+[2017/07/06 17:06:53 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: 8WxoKlqFo6Za9LGtQUnB0YxZ98GjcYhwDmaz28kj8bs%3D
+[2017/07/06 17:14:37 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 17:14:44 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 17:15:31 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 17:15:40 CST] [DEBG] (server.modTitleIsExist:116) modTitleIsExist ==> strCnt: 0
+[2017/07/06 17:15:40 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============
+[2017/07/06 17:15:52 CST] [EROR] (server.backup:42) ===========执行数据备份脚本失败============

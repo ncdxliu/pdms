@@ -1,0 +1,55 @@
+[2017/07/04 22:37:06 CST] [DEBG] (main.initLogger:72) Current time is : 22:37:06 CST 2017/07/04
+[2017/07/04 22:49:00 CST] [DEBG] (main.initLogger:72) Current time is : 22:49:00 CST 2017/07/04
+[2017/07/04 22:49:00 CST] [DEBG] (dbopr.GetDbConn:90) 开始连接mysql数据库...
+[2017/07/04 22:49:00 CST] [DEBG] (dbopr.GetDbConn:114) 连接mysql数据库成功!
+[2017/07/04 22:52:21 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: Fmxwduw5gcxPKu1xAlsSENacazKOiQI2Eg_kOcH7EX8%3D
+[2017/07/04 22:52:21 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/04 22:52:21 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/04 22:52:21 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/04 22:52:21 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/04 22:52:22 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: cLxtORhEcjxtNvxoWJC9f3m1-LF1DzTNo617atb6lwY%3D
+[2017/07/04 22:52:22 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/04 22:52:22 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/04 22:52:22 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/04 22:52:22 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/04 22:52:38 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: XHrIFx8JW_WRrDphFsglCW17u57UzxcGrQ_SvWjSfoU%3D
+[2017/07/04 22:52:38 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/04 22:52:38 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/04 22:52:38 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/04 22:52:38 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/04 22:52:39 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: NCtRvURxFvNpk8Ik0bF6jhI--hFtXKexDujVza2UbCg%3D
+[2017/07/04 22:52:39 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/04 22:52:39 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/04 22:52:39 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/04 22:52:39 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/04 22:52:40 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: Fmxwduw5gcxPKu1xAlsSENacazKOiQI2Eg_kOcH7EX8%3D
+[2017/07/04 22:52:40 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: cLxtORhEcjxtNvxoWJC9f3m1-LF1DzTNo617atb6lwY%3D
+[2017/07/04 22:52:40 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: 0mIHjHmV24e4M8gp19kyrAv7OGqMrpgRrmR-oKRHIVE%3D
+[2017/07/04 22:52:40 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/04 22:52:40 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/04 22:52:40 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/04 22:52:40 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/04 22:52:41 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: Nw5s3hueLnexBlvJeMBcqf8A2gIESp-Hx7iY-0_cIw4%3D
+[2017/07/04 22:52:42 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/04 22:52:42 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/04 22:52:42 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/04 22:52:42 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/04 22:52:43 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: Dj0z7ZNdDLqu3u7BFrjvb_6GjKE9NUJRZ_J2GAQ4kFA%3D
+[2017/07/04 22:52:43 CST] [EROR] (session.(*SessionMgr).CheckCookieValid:135) 从请求中获取cookie错误, err: http: named cookie not present
+[2017/07/04 22:52:43 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/04 22:52:43 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/04 22:52:43 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/04 22:52:50 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: XHrIFx8JW_WRrDphFsglCW17u57UzxcGrQ_SvWjSfoU%3D
+[2017/07/04 22:52:50 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: NCtRvURxFvNpk8Ik0bF6jhI--hFtXKexDujVza2UbCg%3D
+[2017/07/04 22:53:00 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: 0mIHjHmV24e4M8gp19kyrAv7OGqMrpgRrmR-oKRHIVE%3D
+[2017/07/04 22:53:00 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: Nw5s3hueLnexBlvJeMBcqf8A2gIESp-Hx7iY-0_cIw4%3D
+[2017/07/04 22:53:00 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: Dj0z7ZNdDLqu3u7BFrjvb_6GjKE9NUJRZ_J2GAQ4kFA%3D
+[2017/07/04 22:53:32 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: jzss2tiwR61f9rVp72PNG6F5396gKaTaqMuDo5PCFtw%3D
+[2017/07/04 22:53:50 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: jzss2tiwR61f9rVp72PNG6F5396gKaTaqMuDo5PCFtw%3D
+[2017/07/04 22:54:00 CST] [EROR] (server.ReadMessage:45) ==============会话超时或未登录============
+[2017/07/04 22:54:00 CST] [EROR] (server.NewHttpServer:133) =====error=====NewHttpServer==========[ReadMessage error]==============
+[2017/07/04 22:54:00 CST] [EROR] (server.NewHttpServer:134) err: 会话超时，请重新登录
+[2017/07/04 22:54:02 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: kW_kJYIDOFWUKy1bpK_7ODnQQWDsNywfI0A-fhrszZ8%3D
+[2017/07/04 22:54:40 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: kW_kJYIDOFWUKy1bpK_7ODnQQWDsNywfI0A-fhrszZ8%3D
+[2017/07/04 23:05:41 CST] [DEBG] (server.NewHttpServer:186) 登录开启sessionID: Cx4aQeltDSpYNlqTSLAFnx2WikXd0XmwnShOj-aB2kM%3D
+[2017/07/04 23:06:00 CST] [DEBG] (session.(*SessionMgr).GC:172) =============>删除过期的session, sessionID: Cx4aQeltDSpYNlqTSLAFnx2WikXd0XmwnShOj-aB2kM%3D

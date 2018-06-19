@@ -1,0 +1,101 @@
+//个人数据管理系统-批量查询
+package server
+
+import (
+	"dbopr"
+	"encoding/json"
+	"log"
+)
+
+type TX0004Response struct {
+	TxCode  string                 `json:"TXCODE"`
+	SeqId   string                 `json:"SEQ_ID"`
+	ErrCode string                 `json:"ERRCODE"`
+	ErrMsg  string                 `json:"ERRMSG"`
+	Count   int                    `json:"COUNT"`
+	Detail  []TX0004DetailResponse `json:"DATA"`
+}
+
+type TX0004DetailResponse struct {
+	DataId string `json:"DATA_ID"`
+	Title  string `json:"TITLE"`
+}
+
+//数据批量查询
+func dataBatchSelect(data map[string]string) (string, error) {
+	//log.Println("===================dataBatchSelect start ...====================")
+	var responseStr string
+
+	batchDetailArray, err := detailBSelect(data)
+	if err != nil {
+		log.Println("=========error=====dataBatchSelect=======detailBSelect error===============")
+		log.Println("err: ", err)
+
+		return "1000", err
+	}
+
+	jsonData := new(TX0004Response)
+
+	jsonData.TxCode = data["TXCODE"]
+	jsonData.SeqId = data["SEQ_ID"]
+	jsonData.ErrCode = "0000"
+	jsonData.ErrMsg = "查询成功"
+	jsonData.Count = len(batchDetailArray)
+	jsonData.Detail = batchDetailArray
+
+	b, err := json.Marshal(jsonData)
+	if err != nil {
+		log.Println("============error====dataBatchSelect========json.Marshal(jsonData) error============")
+		log.Println("error:", err)
+
+		return "1000", err
+	}
+
+	responseStr = string(b)
+
+	//log.Println("======================dataBatchSelect end========================")
+
+	return responseStr, nil
+}
+
+//批量查询
+func detailBSelect(data map[string]string) ([]TX0004DetailResponse, error) {
+	//log.Println(data["USER_ID"], " - ", data["DATA_TYPE"])
+
+	rows, err := dbopr.Dbconn.Query("select data_id, title from TB_CONTENT where user_id = ? and data_type = ? and status = '00' order by add_time desc", data["USER_ID"], data["DATA_TYPE"])
+	if err != nil {
+		log.Println("===error====detailBSelect=========Dbconn.Query error===========")
+		log.Println("err: ", err)
+
+		return nil, err
+	}
+	defer rows.Close()
+
+	var dataId string
+	var title string
+
+	detailArray := make([]TX0004DetailResponse, 0)
+
+	for rows.Next() {
+		err := rows.Scan(&dataId, &title)
+		if err != nil {
+			log.Println("===error======detailBSelect========rows.Scan error===========")
+			log.Println("err: ", err)
+		}
+
+		//log.Println("dataId: ", dataId)
+		//log.Println("title: ", title)
+		//log.Println("======================")
+		detailData := TX0004DetailResponse{dataId, title}
+
+		detailArray = append(detailArray, detailData)
+	}
+
+	err = rows.Err()
+	if err != nil {
+		log.Println("===error======detailBSelect=========rows.Err error==========")
+		log.Println("err: ", err)
+	}
+
+	return detailArray, nil
+}
