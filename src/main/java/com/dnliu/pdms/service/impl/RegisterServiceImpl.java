@@ -1,0 +1,163 @@
+package com.dnliu.pdms.service.impl;
+
+import com.alibaba.fastjson.JSON;
+import com.dnliu.pdms.common.ResponseUtil;
+import com.dnliu.pdms.common.utils.AppUtil;
+import com.dnliu.pdms.common.utils.DateUtils;
+import com.dnliu.pdms.common.utils.StringUtil;
+import com.dnliu.pdms.dao.UserMapper;
+import com.dnliu.pdms.entity.User;
+import com.dnliu.pdms.model.GetCheckPwd;
+import com.dnliu.pdms.model.Register;
+import com.dnliu.pdms.model.ResetCheckPwd;
+import com.dnliu.pdms.model.UpdatePassword;
+import com.dnliu.pdms.service.RegisterService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author dnliu
+ * @date 2021-09-12 13:42
+ */
+@Service
+public class RegisterServiceImpl implements RegisterService {
+    private static final Logger logger = LoggerFactory.getLogger(RegisterServiceImpl.class);
+
+    @Autowired
+    private UserMapper userMapper;
+
+    /**
+     * 注册
+     * @param register
+     * @return
+     */
+    @Override
+    public Map register(Register register) {
+        Map rspMap = new HashMap<>();
+
+        String userName = register.getUserName();
+        String userPhone = register.getUserPhone();
+        String userEmail = register.getUserEmail();
+        String userPassword = register.getUserPassword();
+
+        //判断用户名是否已注册
+        int count = userMapper.countUserName(userName);
+        if (count > 0) {
+            return ResponseUtil.getCommonFailResponse("该用户名已注册");
+        }
+
+        //判断邮箱是否已注册
+        count = userMapper.countUserEmail(userEmail);
+        if (count > 0) {
+            return ResponseUtil.getCommonFailResponse("该邮箱已注册");
+        }
+
+        //判断手机号码是否已注册
+        if (!StringUtil.isEmpty(userPhone)) {
+            count = userMapper.countUserPhone(userPhone);
+            if (count > 0) {
+                return ResponseUtil.getCommonFailResponse("该手机号码已注册");
+            }
+        }
+
+        Map map = new HashMap<>();
+        map.put("userName", userName);
+        map.put("userPassword", userPassword);
+        map.put("userEmail", userEmail);
+        map.put("userPhone", userPhone);
+        map.put("openid", "");
+        map.put("registeredTime", DateUtils.getNowTime());
+        map.put("remark", "网页注册");
+        map.put("passwordLastChangeDay", DateUtils.getNowDate());
+        map.put("status", "0");
+
+        userMapper.addUser(map);
+
+        rspMap.put("rspCode", "R0000");
+        rspMap.put("rspMsg", "注册成功");
+
+        return rspMap;
+    }
+
+    /**
+     * 修改密码
+     * @param updatePassword
+     * @return
+     */
+    @Override
+    public Map updatePassword(UpdatePassword updatePassword) {
+        Map rspMap = new HashMap<>();
+
+        logger.info(JSON.toJSONString(updatePassword));
+
+        long userId = AppUtil.getUser().getId();
+
+        User user = userMapper.selectUserById(userId);
+        if (!user.getUserPassword().equals(updatePassword.getOldPassword())) {
+            rspMap.put("rspCode", "R9999");
+            rspMap.put("rspMsg", "修改密码失败-输入的旧密码不正确");
+
+            return rspMap;
+        }
+
+        Map map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("userPassword", updatePassword.getNewPassword());
+        map.put("passwordLastChangeDay", DateUtils.getNowDate());
+        userMapper.updatePassword(map);
+
+        rspMap.put("rspCode", "R0000");
+        rspMap.put("rspMsg", "修改密码成功");
+
+        return rspMap;
+    }
+
+    /**
+     * 重置密码
+     * @param resetCheckPwd
+     * @return
+     */
+    @Override
+    public Map resetCheckPwd(ResetCheckPwd resetCheckPwd) {
+        Map rspMap = new HashMap<>();
+
+        logger.info(JSON.toJSONString(resetCheckPwd));
+
+        long userId = AppUtil.getUser().getId();
+
+        String checkPwd = resetCheckPwd.getCheckPwd();
+
+        Map map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("checkPwd", checkPwd);
+        userMapper.updateCheckPwd(map);
+
+        rspMap.put("rspCode", "R0000");
+        rspMap.put("rspMsg", "设置成功");
+
+        return rspMap;
+    };
+
+    @Override
+    public Map getCheckPwd(GetCheckPwd getCheckPwd) {
+        Map rspMap = new HashMap<>();
+
+        logger.info(JSON.toJSONString(getCheckPwd));
+
+        long userId = AppUtil.getUser().getId();
+
+        User user = userMapper.selectUserById(userId);
+
+        rspMap.put("rspCode", "R0000");
+        rspMap.put("rspMsg", "设置成功");
+        rspMap.put("checkPwd", user.getCheckPwd());
+
+        return rspMap;
+    };
+
+}

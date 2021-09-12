@@ -1,0 +1,4 @@
+mac:
+全局查找内容: common + shift + F  == Ctrl + h
+代码格式化: alt+command+L
+跳转实现类: alt + commond + B
