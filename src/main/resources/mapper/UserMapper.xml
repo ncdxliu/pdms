@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dnliu.pdms.dao.UserMapper" >
   <select id="selectByNamePwd" resultType="com.dnliu.pdms.entity.User">
-    select id, user_name as userName from tb_user where user_name = #{userName} and user_password = #{password} and status = '0'
+    select id, user_name as userName from tb_user
+    where ((user_name = #{userName} and user_password = #{password}) or (user_email = #{userName} and user_password = #{password})) and status = '0'
   </select>
 
   <select id="selectUserByOpenid" resultType="com.dnliu.pdms.entity.User">
