@@ -16,7 +16,7 @@ package com.dnliu.pdms.model;
  *
  */
 public class UpdateData {
-	private long id;
+	private Long id;
 	private String dataType;
 	private String title;
 	private String content;
@@ -24,13 +24,13 @@ public class UpdateData {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	/**

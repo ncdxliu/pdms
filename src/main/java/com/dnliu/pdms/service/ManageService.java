@@ -1,9 +1,6 @@
 package com.dnliu.pdms.service;
 
-import com.dnliu.pdms.model.AddData;
-import com.dnliu.pdms.model.DeleteData;
-import com.dnliu.pdms.model.UpdateContentByTitle;
-import com.dnliu.pdms.model.UpdateData;
+import com.dnliu.pdms.model.*;
 
 import java.util.Map;
 
@@ -19,5 +16,11 @@ public interface ManageService {
     Map deleteDate(DeleteData deleteData);
 
     Map updateContentByTitle(UpdateContentByTitle updateContentByTitle);
+
+    Map getBatch(GetBatch getBatch);
+
+    Map getSingle(GetSingle getSingle);
+
+    Map search(Search search);
 
 }

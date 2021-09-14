@@ -7,6 +7,7 @@
  */
 package com.dnliu.pdms.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -23,6 +24,7 @@ import java.io.IOException;
 *
 */
 @Component
+@Slf4j
 public class CorsFilter implements Filter {
  
     @Override
@@ -34,6 +36,8 @@ public class CorsFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpServletRequest request = (HttpServletRequest) servletRequest;
+
+        log.info("=======经过-CorsFilter======");
 
         response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin")); //http://lfhtimes.cn
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");

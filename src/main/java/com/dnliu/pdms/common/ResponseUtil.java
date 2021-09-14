@@ -23,6 +23,20 @@ public class ResponseUtil {
     }
 
     /**
+     * 通用失败响应
+     * @param rspMsg
+     * @return
+     */
+    public static Map<String, Object> getFailResponse(String code, String rspMsg) {
+        Map<String, Object> resMap = new HashMap<>();
+
+        resMap.put("rspCode", code);
+        resMap.put("rspMsg", rspMsg);
+
+        return resMap;
+    }
+
+    /**
      * 通用成功响应
      * @param rspMsg
      * @return

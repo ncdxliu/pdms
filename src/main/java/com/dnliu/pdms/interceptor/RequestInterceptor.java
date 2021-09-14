@@ -2,9 +2,12 @@ package com.dnliu.pdms.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.auth0.jwt.interfaces.Claim;
+import com.dnliu.pdms.common.ResponseCode;
 import com.dnliu.pdms.common.ResponseUtil;
+import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.JwtUtil;
 import com.dnliu.pdms.entity.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,11 +25,14 @@ import java.util.Map;
  *
  */
 @Component
+@Slf4j
 public class RequestInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		log.info("=======经过RequestInterceptor======");
+
 		String url = request.getRequestURI();
 		if (url.indexOf("/login") >= 0 || url.indexOf("/wxLogin") >= 0 || url.indexOf("image") >= 0 || url.indexOf("js") >= 0
 				|| url.indexOf("css") >= 0 || url.indexOf("/register") >= 0 || url.indexOf("/kefuback") >= 0) {
@@ -35,19 +41,20 @@ public class RequestInterceptor implements HandlerInterceptor {
 
 		//获取 header里的token
 		final String token = request.getHeader("authorization");
+		log.info("前端传入token: {}", token);
 		if ("OPTIONS".equals(request.getMethod())) {
 			response.setStatus(HttpServletResponse.SC_OK);
 		} else {
 			if (token == null) {
 				response.setHeader("content-type", "text/html;charset=UTF-8");//注意是分号，不能是逗号
-				response.getWriter().write(JSON.toJSONString(ResponseUtil.getCommonFailResponse("未登录或会话超时，请重新登录！")));
+				response.getWriter().write(JSON.toJSONString(ResponseUtil.getFailResponse(ResponseCode.LOGIN_AGAIN_CODE,"未登录或会话超时，请重新登录")));
 				return false;
 			}
 
 			Map<String, Claim> userData = JwtUtil.verifyToken(token);
 			if (userData == null) {
 				response.setHeader("content-type", "text/html;charset=UTF-8");//注意是分号，不能是逗号
-				response.getWriter().write(JSON.toJSONString(ResponseUtil.getCommonFailResponse("token不合法！")));
+				response.getWriter().write(JSON.toJSONString(ResponseUtil.getFailResponse(ResponseCode.LOGIN_AGAIN_CODE,"未登录或会话超时，请重新登录")));
 				return false;
 			}
 
@@ -58,10 +65,7 @@ public class RequestInterceptor implements HandlerInterceptor {
 			user.setId(id);
 			user.setUserName(userName);
 
-			//拦截器 拿到用户信息，放到request中
-//            request.setAttribute("id", id);
-//            request.setAttribute("name", name);
-//            request.setAttribute("userName", userName);
+			AppUtil.setUser(user);
 		}
 
 		return true;

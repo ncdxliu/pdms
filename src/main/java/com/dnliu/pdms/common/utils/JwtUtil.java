@@ -28,7 +28,7 @@ public class JwtUtil {
     /**
      * 过期时间
      **/
-    private static final long EXPIRATION = 300L;//单位为秒
+    private static final long EXPIRATION = 600L;//单位为秒
 
     /**
      * 生成用户token,设置token超时时间

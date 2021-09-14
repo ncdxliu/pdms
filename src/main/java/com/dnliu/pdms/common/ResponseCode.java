@@ -9,5 +9,7 @@ public class ResponseCode {
     public static final String SUCCESS = "R0000";
 
     //错误代码
+    public static final String LOGIN_AGAIN_CODE = "R9998";
+
     public static final String ERROR_CODE = "R9999";
 }
