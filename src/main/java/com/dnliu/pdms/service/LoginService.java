@@ -12,5 +12,5 @@ import java.util.Map;
 public interface LoginService {
     Map<String, Object> login(Login login);
 
-    Map wxLogin(WxLogin wxLogin);
+    Map<String, Object> wxLogin(WxLogin wxLogin);
 }

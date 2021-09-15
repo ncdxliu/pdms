@@ -21,8 +21,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("/pdms/registerApi")
 public class RegisterController {
-    @Autowired
+
     private RegisterService registerService;
+
+    @Autowired
+    RegisterController(RegisterService registerService) {
+        this.registerService = registerService;
+    }
 
     /**
      * @desc: 用户注册
@@ -33,7 +38,7 @@ public class RegisterController {
      * @throws
      */
     @RequestMapping("/register")
-    public Map register(@RequestBody Register register) {
+    public Map<String, Object> register(@RequestBody Register register) {
         if (register == null || StringUtil.isBlank(register.getUserName())
         || StringUtil.isBlank(register.getUserEmail()) || StringUtil.isBlank(register.getUserPassword())) {
             return ResponseUtil.getCommonFailResponse("请填写全部必填项");
@@ -51,7 +56,7 @@ public class RegisterController {
      * @throws
      */
     @RequestMapping("/updatePassword")
-    public Map updatePassword(@RequestBody UpdatePassword updatePassword) {
+    public Map<String, Object> updatePassword(@RequestBody UpdatePassword updatePassword) {
         if (updatePassword == null) {
             return ResponseUtil.getCommonFailResponse("请填写全部必填项");
         }
@@ -68,7 +73,7 @@ public class RegisterController {
      * @throws
      */
     @RequestMapping("/resetCheckPwd")
-    public Map resetCheckPwd(@RequestBody ResetCheckPwd resetCheckPwd) {
+    public Map<String, Object> resetCheckPwd(@RequestBody ResetCheckPwd resetCheckPwd) {
         if (resetCheckPwd == null) {
             return ResponseUtil.getCommonFailResponse("请填写全部必填项");
         }
@@ -85,11 +90,20 @@ public class RegisterController {
      * @throws
      */
     @RequestMapping("/getCheckPwd")
-    public Map getCheckPwd(@RequestBody GetCheckPwd getCheckPwd) {
+    public Map<String, Object> getCheckPwd(@RequestBody GetCheckPwd getCheckPwd) {
         if (getCheckPwd == null) {
             return ResponseUtil.getCommonFailResponse("请填写全部必填项");
         }
 
         return registerService.getCheckPwd(getCheckPwd);
+    }
+
+    /**
+     * 销户
+     * @return
+     */
+    @RequestMapping("/destoryUser")
+    public Map<String, Object> destoryUser() {
+        return registerService.destoryUser();
     }
 }

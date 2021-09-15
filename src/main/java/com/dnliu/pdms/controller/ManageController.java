@@ -51,7 +51,7 @@ public class ManageController {
 	 * @throws
 	 */
 	@RequestMapping("/addData")
-	public @ResponseBody Map addData(@RequestBody AddData addData) {
+	public @ResponseBody Map<String, Object> addData(@RequestBody AddData addData) {
 		if (addData == null
 				|| StringUtil.isBlank(addData.getTitle())
 				|| StringUtil.isBlank(addData.getContent())
@@ -71,7 +71,7 @@ public class ManageController {
 	 * @throws
 	 */
 	@RequestMapping("/updateData")
-	public @ResponseBody Map updateDate(@RequestBody UpdateData updateData) {
+	public @ResponseBody Map<String, Object> updateDate(@RequestBody UpdateData updateData) {
 		if (updateData == null
 				|| updateData.getId() == null
 				|| StringUtil.isBlank(updateData.getTitle())
@@ -92,7 +92,7 @@ public class ManageController {
 	 * @throws
 	 */
 	@RequestMapping("/deleteData")
-	public @ResponseBody Map deleteDate(@RequestBody DeleteData deleteData) {
+	public @ResponseBody Map<String, Object> deleteDate(@RequestBody DeleteData deleteData) {
 		if (deleteData == null || deleteData.getId() == null) {
 			return ResponseUtil.getCommonFailResponse("输入参数有误");
 		}
@@ -109,7 +109,7 @@ public class ManageController {
 	 * @throws
 	 */
 	@RequestMapping("/updateContentByTitle")
-	public @ResponseBody Map updateContentByTitle(@RequestBody UpdateContentByTitle updateContentByTitle) {
+	public @ResponseBody Map<String, Object> updateContentByTitle(@RequestBody UpdateContentByTitle updateContentByTitle) {
 		if (updateContentByTitle == null
 				|| StringUtil.isBlank(updateContentByTitle.getTitle())) {
 			return ResponseUtil.getCommonFailResponse("输入参数有误");
@@ -128,7 +128,7 @@ public class ManageController {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("/getBatch")
-	public @ResponseBody Map getBatch(@RequestBody GetBatch getBatch) {
+	public @ResponseBody Map<String, Object> getBatch(@RequestBody GetBatch getBatch) {
 		if (getBatch == null || StringUtil.isBlank(getBatch.getDataType())) {
 			return ResponseUtil.getCommonFailResponse("输入参数有误");
 		}
@@ -146,7 +146,7 @@ public class ManageController {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("/getSingle")
-	public @ResponseBody Map getSingle(@RequestBody GetSingle getSingle) {
+	public @ResponseBody Map<String, Object> getSingle(@RequestBody GetSingle getSingle) {
 		if (getSingle == null || getSingle.getId() == null) {
 			return ResponseUtil.getCommonFailResponse("输入参数有误");
 		}
@@ -163,7 +163,7 @@ public class ManageController {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("/search")
-	public @ResponseBody Map search(@RequestBody Search search) {
+	public @ResponseBody Map<String, Object> search(@RequestBody Search search) {
 		if (search == null || StringUtil.isBlank(search.getSearchStr())) {
 			return ResponseUtil.getCommonFailResponse("输入参数有误");
 		}

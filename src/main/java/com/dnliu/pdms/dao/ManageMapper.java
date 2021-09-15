@@ -19,23 +19,23 @@ import java.util.Map;
  *
  */
 public interface ManageMapper {
-	void insert(Map map);
+	void insert(Map<String, Object> map);
 
-	void update(Map map);
+	void update(Map<String, Object> map);
 
-	void updateByTitle(Map map);
+	void updateByTitle(Map<String, Object> map);
 
-	void delete(Map map);
+	void delete(Map<String, Object> map);
 
-	List<Map> batch(Map map);
+	List<Map<String, Object>> batch(Map<String, Object> map);
 
-	List<Map> batchAll(Map map);
+	List<Map<String, Object>> batchAll(Map<String, Object> map);
 
-	Map single(Map map);
+	Map<String, Object> single(Map<String, Object> map);
 
-	int countData(Map map);
+	int countData(Map<String, Object> map);
 
-	List<Map> searchTitle(Map map);
+	List<Map<String, Object>> searchTitle(Map<String, Object> map);
 
-	List<Map> searchAll(long userId);
+	List<Map<String, Object>> searchAll(long userId);
 }

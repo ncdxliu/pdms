@@ -1,63 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dnliu.pdms.dao.UserMapper" >
-  <select id="selectByNamePwd" resultType="com.dnliu.pdms.entity.User">
-    select id, user_name as userName from tb_user
-    where ((user_name = #{userName} and user_password = #{password}) or (user_email = #{userName} and user_password = #{password})) and status = '0'
-  </select>
 
-  <select id="selectUserByOpenid" resultType="com.dnliu.pdms.entity.User">
-    select id, user_name as userName, check_pwd as checkPwd from tb_user where openid = #{openid} status = '0'
-  </select>
+    <select id="selectByNamePwd" resultType="com.dnliu.pdms.entity.User">
+      select id, user_name as userName from tb_user
+      where ((user_name = #{userName} and user_password = #{password}) or (user_email = #{userName} and user_password = #{password})) and status = '0'
+    </select>
 
-  <insert id="addWxUser" parameterType="Map">
-    insert into tb_user(user_name, user_password, openid, registered_time, remark, password_last_change_day, status, check_pwd)
-    values(#{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR},
-    #{registeredTime,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{passwordLastChangeDay,jdbcType=CHAR}, #{status,jdbcType=CHAR}, '0')
-  </insert>
+    <select id="selectUserByOpenid" resultType="com.dnliu.pdms.entity.User">
+      select id, user_name as userName, check_pwd as checkPwd from tb_user where openid = #{openid} status = '0'
+    </select>
 
-  <insert id="addUser" parameterType="Map">
-    insert into tb_user(user_name, user_password, user_email, user_phone, openid, registered_time, remark, password_last_change_day, status, check_pwd)
-    values(#{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR},
-    #{registeredTime,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{passwordLastChangeDay,jdbcType=CHAR}, #{status,jdbcType=CHAR}, '0')
-  </insert>
+    <insert id="addWxUser" parameterType="Map">
+      insert into tb_user(user_name, user_password, openid, registered_time, remark, password_last_change_day, status, check_pwd)
+      values(#{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR},
+      #{registeredTime,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{passwordLastChangeDay,jdbcType=CHAR}, #{status,jdbcType=CHAR}, '0')
+    </insert>
 
-  <select id="selectUserById" resultType="com.dnliu.pdms.entity.User">
-      select
-      id,
-      user_name userName,
-      user_password userPassword,
-      openid,
-      user_email userEmail,
-      user_phone userPhone,
-      registered_time registeredTime,
-      remark,
-      password_last_change_day passwordLastChangeDay,
-      online_status onlineStatus,
-      status,
-      verif_code verifCode,
-      check_pwd checkPwd
-      from tb_user where id = #{id} and status = '0'
-  </select>
+    <insert id="addUser" parameterType="Map">
+      insert into tb_user(user_name, user_password, user_email, user_phone, openid, registered_time, remark, password_last_change_day, status, check_pwd)
+      values(#{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR},
+      #{registeredTime,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{passwordLastChangeDay,jdbcType=CHAR}, #{status,jdbcType=CHAR}, '0')
+    </insert>
 
-  <update id="updatePassword" parameterType="Map">
-      update tb_user set user_password=#{userPassword,jdbcType=VARCHAR}, password_last_change_day=#{passwordLastChangeDay,jdbcType=CHAR} where id=#{userId,jdbcType=BIGINT}
-  </update>
+    <select id="selectUserById" resultType="com.dnliu.pdms.entity.User">
+        select
+        id,
+        user_name userName,
+        user_password userPassword,
+        openid,
+        user_email userEmail,
+        user_phone userPhone,
+        registered_time registeredTime,
+        remark,
+        password_last_change_day passwordLastChangeDay,
+        online_status onlineStatus,
+        status,
+        verif_code verifCode,
+        check_pwd checkPwd
+        from tb_user where id = #{id} and status = '0'
+    </select>
 
-  <update id="updateCheckPwd" parameterType="Map">
-      update tb_user set check_pwd=#{checkPwd,jdbcType=VARCHAR} where id=#{userId,jdbcType=BIGINT}
-  </update>
+    <update id="updatePassword" parameterType="Map">
+        update tb_user set user_password=#{userPassword,jdbcType=VARCHAR}, password_last_change_day=#{passwordLastChangeDay,jdbcType=CHAR} where id=#{userId,jdbcType=BIGINT}
+    </update>
 
-  <select id="countUserName" resultType="Integer">
-      select count(1) from tb_user where user_name = #{userName} and status = '0'
-  </select>
+    <update id="updateCheckPwd" parameterType="Map">
+        update tb_user set check_pwd=#{checkPwd,jdbcType=VARCHAR} where id=#{userId,jdbcType=BIGINT}
+    </update>
 
-  <select id="countUserPhone" resultType="Integer">
-      select count(1) from tb_user where user_phone = #{userPhone} and status = '0'
-  </select>
+    <select id="countUserName" resultType="Integer">
+        select count(1) from tb_user where user_name = #{userName} and status = '0'
+    </select>
 
-  <select id="countUserEmail" resultType="Integer">
-      select count(1) from tb_user where user_email = #{userEmail} and status = '0'
-  </select>
+    <select id="countUserPhone" resultType="Integer">
+        select count(1) from tb_user where user_phone = #{userPhone} and status = '0'
+    </select>
 
+    <select id="countUserEmail" resultType="Integer">
+        select count(1) from tb_user where user_email = #{userEmail} and status = '0'
+    </select>
+
+    <delete id="destoryUser">
+      update tb_user set status = '1' where id = #{id}
+    </delete>
 </mapper>

@@ -27,8 +27,12 @@ import java.util.Map;
 public class ManageServiceImpl implements ManageService {
     private static final Logger logger = LoggerFactory.getLogger(ManageServiceImpl.class);
 
-    @Autowired
     private ManageMapper manageMapper;
+
+    @Autowired
+    ManageServiceImpl(ManageMapper manageMapper) {
+        this.manageMapper = manageMapper;
+    }
 
     /**
      * 新增数据
@@ -36,8 +40,8 @@ public class ManageServiceImpl implements ManageService {
      * @return
      */
     @Override
-    public Map addData(AddData addData) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> addData(AddData addData) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         if (addData.getContent().length() > 1677721L) {
             return ResponseUtil.getCommonFailResponse("新增的数据内容太大");
@@ -55,7 +59,7 @@ public class ManageServiceImpl implements ManageService {
             return ResponseUtil.getCommonFailResponse("数据加密失败");
         }
 
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("dataType", addData.getDataType());
         map.put("title", addData.getTitle());
@@ -81,8 +85,8 @@ public class ManageServiceImpl implements ManageService {
      * @return
      */
     @Override
-    public Map updateDate(UpdateData updateData) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> updateDate(UpdateData updateData) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         if (updateData.getContent().length() > 1677721L) {
             return ResponseUtil.getCommonFailResponse("新增的数据内容太大");
@@ -100,7 +104,7 @@ public class ManageServiceImpl implements ManageService {
             return ResponseUtil.getCommonFailResponse("数据加密失败");
         }
 
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("dataType", updateData.getDataType());
         map.put("title", updateData.getTitle());
         map.put("id", updateData.getId());
@@ -126,14 +130,14 @@ public class ManageServiceImpl implements ManageService {
      * @return
      */
     @Override
-    public Map deleteDate(DeleteData deleteData) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> deleteDate(DeleteData deleteData) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         logger.info(JSON.toJSONString(deleteData));
 
         long userId = AppUtil.getUser().getId();
 
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("id", deleteData.getId());
         map.put("userId", userId);
 
@@ -152,8 +156,8 @@ public class ManageServiceImpl implements ManageService {
      * @return
      */
     @Override
-    public Map updateContentByTitle(UpdateContentByTitle updateContentByTitle) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> updateContentByTitle(UpdateContentByTitle updateContentByTitle) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         logger.info(JSON.toJSONString(updateContentByTitle));
 
@@ -167,7 +171,7 @@ public class ManageServiceImpl implements ManageService {
             return ResponseUtil.getCommonFailResponse("数据加密失败");
         }
 
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("title", updateContentByTitle.getTitle());
         map.put("content1", content);
@@ -187,14 +191,14 @@ public class ManageServiceImpl implements ManageService {
      * @return
      */
     @Override
-    public Map getBatch(GetBatch getBatch) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> getBatch(GetBatch getBatch) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         logger.info(JSON.toJSONString(getBatch));
 
         long userId = AppUtil.getUser().getId();
 
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("dataType", getBatch.getDataType());
         int count = getBatch.getCount();
@@ -203,7 +207,7 @@ public class ManageServiceImpl implements ManageService {
             return ResponseUtil.getCommonFailResponse("前端传入的查询页码错误");
         }
 
-        List<Map> result = null;
+        List<Map<String, Object>> result = null;
         if (pageNum > 0) {
             int startRow = (pageNum - 1) * count;
             map.put("count", count);
@@ -228,18 +232,18 @@ public class ManageServiceImpl implements ManageService {
      * @return
      */
     @Override
-    public Map getSingle(GetSingle getSingle) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> getSingle(GetSingle getSingle) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         logger.info(JSON.toJSONString(getSingle));
 
         long userId = AppUtil.getUser().getId();
 
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("id", getSingle.getId());
 
-        Map singleMap = manageMapper.single(map);
+        Map<String, Object> singleMap = manageMapper.single(map);
         if (null == singleMap || singleMap.size() == 0) {
             return ResponseUtil.getCommonFailResponse("查询无记录");
         }
@@ -273,8 +277,8 @@ public class ManageServiceImpl implements ManageService {
      * @return
      */
     @Override
-    public Map search(Search search) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> search(Search search) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         logger.info(JSON.toJSONString(search));
         long userId = AppUtil.getUser().getId();
@@ -282,22 +286,22 @@ public class ManageServiceImpl implements ManageService {
         String searchFlag = search.getSeachFlag();
         String searchStr = search.getSearchStr();
 
-        List<Map> resultList = new ArrayList<>();
+        List<Map<String, Object>> resultList = new ArrayList<>();
 
         if ("0".equals(searchFlag)) {  //只搜索标题
-            Map map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("userId", userId);
             map.put("searchStr", searchStr);
             resultList = manageMapper.searchTitle(map);
         } else {  //搜索内容和标题
-            List<Map> tmpMap = manageMapper.searchAll(userId);
+            List<Map<String, Object>> tmpMap = manageMapper.searchAll(userId);
             int size = tmpMap.size();
 
             for (int i = 0; i < size; i++) {
-                Map map = tmpMap.get(i);
+                Map<String, Object> map = tmpMap.get(i);
                 String title = (String) map.get("title");
                 if (title.contains(searchStr)) {
-                    Map rsMap = new HashMap<>();
+                    Map<String, Object> rsMap = new HashMap<>();
                     rsMap.put("id", map.get("id"));
                     rsMap.put("title", map.get("title"));
 
@@ -314,7 +318,7 @@ public class ManageServiceImpl implements ManageService {
                 }
 
                 if (content.contains(searchStr)) {
-                    Map rsMap = new HashMap<>();
+                    Map<String, Object> rsMap = new HashMap<>();
                     rsMap.put("id", map.get("id"));
                     rsMap.put("title", map.get("title"));
 

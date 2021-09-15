@@ -1,18 +1,16 @@
 package com.dnliu.pdms.controller;
 
 import com.dnliu.pdms.common.ResponseUtil;
+import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.StringUtil;
 import com.dnliu.pdms.model.Login;
 import com.dnliu.pdms.service.LoginService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -24,10 +22,13 @@ import java.util.Map;
 @RequestMapping("/pdms/loginApi")
 @CrossOrigin
 public class LoginController {
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    private LoginService loginService;
 
     @Autowired
-    private LoginService loginService;
+    LoginController(LoginService loginService) {
+        this.loginService = loginService;
+    }
 
     /**
      * 登录
@@ -35,7 +36,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/login")
-    public Map login(@RequestBody Login login) {
+    public Map<String, Object> login(@RequestBody Login login) {
         if (login == null || StringUtil.isBlank(login.getUserName())
         || StringUtil.isBlank(login.getUserPassword())) {
             return ResponseUtil.getCommonFailResponse("请输入用户名和密码!");
@@ -44,13 +45,10 @@ public class LoginController {
         return loginService.login(login);
     }
 
-    @RequestMapping("/test")
-    public Map test() {
-        Map<String, Object> rspMap = new HashMap<>();
-        rspMap.put("rspCode", "R0000");
-        rspMap.put("rspMsg", "token校验成功");
+    @RequestMapping("/loginOut")
+    public Map<String, Object> loginOut() {
+        AppUtil.setUser(null);
 
-        return rspMap;
+        return ResponseUtil.getCommonSuccessResponse("退出成功");
     }
-
 }

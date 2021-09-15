@@ -9,18 +9,18 @@ import java.util.Map;
  * @date 2021-09-12 22:36
  */
 public interface ManageService {
-    Map addData(AddData addData);
+    Map<String, Object> addData(AddData addData);
 
-    Map updateDate(UpdateData updateData);
+    Map<String, Object> updateDate(UpdateData updateData);
 
-    Map deleteDate(DeleteData deleteData);
+    Map<String, Object> deleteDate(DeleteData deleteData);
 
-    Map updateContentByTitle(UpdateContentByTitle updateContentByTitle);
+    Map<String, Object> updateContentByTitle(UpdateContentByTitle updateContentByTitle);
 
-    Map getBatch(GetBatch getBatch);
+    Map<String, Object> getBatch(GetBatch getBatch);
 
-    Map getSingle(GetSingle getSingle);
+    Map<String, Object> getSingle(GetSingle getSingle);
 
-    Map search(Search search);
+    Map<String, Object> search(Search search);
 
 }

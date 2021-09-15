@@ -7,7 +7,6 @@
  */
 package com.dnliu.pdms.filter;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -23,7 +22,6 @@ import java.io.IOException;
  *
  */
  @Component
- @Slf4j
 public class XssFilter implements Filter {
 	
 	/* (non-Javadoc)
@@ -31,7 +29,6 @@ public class XssFilter implements Filter {
      */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException,
             ServletException {
-    	log.info("=======经过-XssFilter======");
     	XssHttpServletRequestWrapper xssRequest = new XssHttpServletRequestWrapper((HttpServletRequest) request);
     	filterChain.doFilter(xssRequest, response);
     }

@@ -12,12 +12,14 @@ import java.util.Map;
  * @date 2021-09-12 13:31
  */
 public interface RegisterService {
-    Map register(Register register);
+    Map<String, Object> register(Register register);
 
-    Map updatePassword(UpdatePassword updatePassword);
+    Map<String, Object> updatePassword(UpdatePassword updatePassword);
 
-    Map resetCheckPwd(ResetCheckPwd resetCheckPwd);
+    Map<String, Object> resetCheckPwd(ResetCheckPwd resetCheckPwd);
 
-    Map getCheckPwd(GetCheckPwd getCheckPwd);
+    Map<String, Object> getCheckPwd(GetCheckPwd getCheckPwd);
+
+    Map<String, Object> destoryUser();
 
 }

@@ -28,8 +28,12 @@ import java.util.Map;
 public class RegisterServiceImpl implements RegisterService {
     private static final Logger logger = LoggerFactory.getLogger(RegisterServiceImpl.class);
 
-    @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    RegisterServiceImpl(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     /**
      * 注册
@@ -37,8 +41,8 @@ public class RegisterServiceImpl implements RegisterService {
      * @return
      */
     @Override
-    public Map register(Register register) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> register(Register register) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         String userName = register.getUserName();
         String userPhone = register.getUserPhone();
@@ -65,7 +69,7 @@ public class RegisterServiceImpl implements RegisterService {
             }
         }
 
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("userName", userName);
         map.put("userPassword", userPassword);
         map.put("userEmail", userEmail);
@@ -90,23 +94,20 @@ public class RegisterServiceImpl implements RegisterService {
      * @return
      */
     @Override
-    public Map updatePassword(UpdatePassword updatePassword) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> updatePassword(UpdatePassword updatePassword) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         logger.info(JSON.toJSONString(updatePassword));
 
-        long userId = AppUtil.getUser().getId();
+        String userName = AppUtil.getUser().getUserName();
 
-        User user = userMapper.selectUserById(userId);
-        if (!user.getUserPassword().equals(updatePassword.getOldPassword())) {
-            rspMap.put("rspCode", "R9999");
-            rspMap.put("rspMsg", "修改密码失败-输入的旧密码不正确");
-
-            return rspMap;
+        User user = userMapper.selectByNamePwd(userName, updatePassword.getOldPassword());
+        if (user == null) {
+            return ResponseUtil.getCommonFailResponse("用户不存在或者密码错误");
         }
 
-        Map map = new HashMap<>();
-        map.put("userId", userId);
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", user.getId());
         map.put("userPassword", updatePassword.getNewPassword());
         map.put("passwordLastChangeDay", DateUtils.getNowDate());
         userMapper.updatePassword(map);
@@ -123,8 +124,8 @@ public class RegisterServiceImpl implements RegisterService {
      * @return
      */
     @Override
-    public Map resetCheckPwd(ResetCheckPwd resetCheckPwd) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> resetCheckPwd(ResetCheckPwd resetCheckPwd) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         logger.info(JSON.toJSONString(resetCheckPwd));
 
@@ -144,8 +145,8 @@ public class RegisterServiceImpl implements RegisterService {
     };
 
     @Override
-    public Map getCheckPwd(GetCheckPwd getCheckPwd) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> getCheckPwd(GetCheckPwd getCheckPwd) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         logger.info(JSON.toJSONString(getCheckPwd));
 
@@ -159,5 +160,18 @@ public class RegisterServiceImpl implements RegisterService {
 
         return rspMap;
     };
+
+    /**
+     * 销户
+     * @return
+     */
+    @Override
+    public Map<String, Object> destoryUser() {
+        Long id = AppUtil.getUser().getId();
+
+        userMapper.destoryUser(id);
+
+        return ResponseUtil.getCommonSuccessResponse("销户成功!");
+    }
 
 }

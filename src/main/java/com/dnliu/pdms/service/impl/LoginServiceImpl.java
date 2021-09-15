@@ -26,7 +26,6 @@ import java.util.Map;
 public class LoginServiceImpl implements LoginService {
     private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 
-    @Autowired
     private UserMapper userMapper;
 
     @Value("${weixing.appid}")
@@ -37,6 +36,11 @@ public class LoginServiceImpl implements LoginService {
 
     @Value("${weixing.secret}")
     private String secret;
+
+    @Autowired
+    LoginServiceImpl(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     /**
      * 登录
@@ -77,8 +81,8 @@ public class LoginServiceImpl implements LoginService {
      * @return
      */
     @Override
-    public Map wxLogin(WxLogin wxLogin) {
-        Map rspMap = new HashMap<>();
+    public Map<String, Object> wxLogin(WxLogin wxLogin) {
+        Map<String, Object> rspMap = new HashMap<>();
 
         String userName = "";
 

@@ -7,7 +7,6 @@ import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.JwtUtil;
 import com.dnliu.pdms.entity.User;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,14 +24,11 @@ import java.util.Map;
  *
  */
 @Component
-@Slf4j
 public class RequestInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		log.info("=======经过RequestInterceptor======");
-
 		String url = request.getRequestURI();
 		if (url.indexOf("/login") >= 0 || url.indexOf("/wxLogin") >= 0 || url.indexOf("image") >= 0 || url.indexOf("js") >= 0
 				|| url.indexOf("css") >= 0 || url.indexOf("/register") >= 0 || url.indexOf("/kefuback") >= 0) {
@@ -41,7 +37,6 @@ public class RequestInterceptor implements HandlerInterceptor {
 
 		//获取 header里的token
 		final String token = request.getHeader("authorization");
-		log.info("前端传入token: {}", token);
 		if ("OPTIONS".equals(request.getMethod())) {
 			response.setStatus(HttpServletResponse.SC_OK);
 		} else {
@@ -59,7 +54,12 @@ public class RequestInterceptor implements HandlerInterceptor {
 			}
 
 			Long id = userData.get("id").asLong();
-			String name = userData.get("name").asString();
+			if (id == null) {
+				response.setHeader("content-type", "text/html;charset=UTF-8");//注意是分号，不能是逗号
+				response.getWriter().write(JSON.toJSONString(ResponseUtil.getFailResponse(ResponseCode.LOGIN_AGAIN_CODE,"获取用户信息异常")));
+				return false;
+			}
+
 			String userName = userData.get("userName").asString();
 			User user = new User();
 			user.setId(id);
