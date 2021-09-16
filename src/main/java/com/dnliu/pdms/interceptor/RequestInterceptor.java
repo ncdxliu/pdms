@@ -31,7 +31,7 @@ public class RequestInterceptor implements HandlerInterceptor {
 			throws Exception {
 		String url = request.getRequestURI();
 		if (url.indexOf("/login") >= 0 || url.indexOf("/wxLogin") >= 0 || url.indexOf("image") >= 0 || url.indexOf("js") >= 0
-				|| url.indexOf("css") >= 0 || url.indexOf("/register") >= 0 || url.indexOf("/kefuback") >= 0) {
+				|| url.indexOf("css") >= 0 || url.indexOf("/registerApi/register") >= 0 || url.indexOf("/kefuback") >= 0) {
 			return true;
 		}
 

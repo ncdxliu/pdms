@@ -133,7 +133,7 @@ public class RegisterServiceImpl implements RegisterService {
 
         String checkPwd = resetCheckPwd.getCheckPwd();
 
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("checkPwd", checkPwd);
         userMapper.updateCheckPwd(map);
