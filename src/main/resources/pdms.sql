@@ -39,91 +39,6 @@ CREATE TABLE `tb_content` (
 ) ENGINE=InnoDB AUTO_INCREMENT=545 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for tb_content1
--- ----------------------------
-DROP TABLE IF EXISTS `tb_content1`;
-CREATE TABLE `tb_content1` (
-  `DATA_ID` char(32) NOT NULL,
-  `DATA_DATE` char(8) DEFAULT NULL,
-  `USER_ID` char(32) DEFAULT NULL,
-  `DATA_TYPE` varchar(4) DEFAULT NULL,
-  `TITLE` varchar(120) DEFAULT NULL,
-  `CONTENT1` mediumtext,
-  `CONTENT2` mediumtext,
-  `CONTENT3` mediumtext,
-  `CONTENT4` mediumtext,
-  `CONTENT5` mediumtext,
-  `STATUS` varchar(2) DEFAULT NULL,
-  `ADD_DATE` char(8) DEFAULT NULL,
-  `ADD_TIME` char(14) DEFAULT NULL,
-  `MOD_DATE` char(8) DEFAULT NULL,
-  `MOD_TIME` char(14) DEFAULT NULL,
-  `RSV1` varchar(180) DEFAULT NULL,
-  `RSV2` varchar(180) DEFAULT NULL,
-  `RSV3` varchar(180) DEFAULT NULL,
-  `RSV4` varchar(180) DEFAULT NULL,
-  `RSV5` varchar(180) DEFAULT NULL,
-  PRIMARY KEY (`DATA_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Table structure for tb_dict
--- ----------------------------
-DROP TABLE IF EXISTS `tb_dict`;
-CREATE TABLE `tb_dict` (
-  `DATA_ID` char(32) NOT NULL,
-  `DATA_DATE` char(8) DEFAULT NULL,
-  `GOUP_ID` varchar(10) DEFAULT NULL,
-  `GOUP_NAME` varchar(64) DEFAULT NULL,
-  `DICT_KEY` varchar(64) DEFAULT NULL,
-  `DICT_VALUE` varchar(90) DEFAULT NULL,
-  `RSV1` varchar(180) DEFAULT NULL,
-  `RSV2` varchar(180) DEFAULT NULL,
-  `RSV3` varchar(180) DEFAULT NULL,
-  `RSV4` varchar(180) DEFAULT NULL,
-  `RSV5` varchar(180) DEFAULT NULL,
-  PRIMARY KEY (`DATA_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Table structure for tb_login_log
--- ----------------------------
-DROP TABLE IF EXISTS `tb_login_log`;
-CREATE TABLE `tb_login_log` (
-  `DATA_ID` char(32) NOT NULL,
-  `DATA_DATE` char(8) DEFAULT NULL,
-  `USER_ID` char(32) DEFAULT NULL,
-  `OPER` varchar(2) DEFAULT NULL,
-  `OPER_IP` varchar(20) DEFAULT NULL,
-  `OPER_DATE` char(8) DEFAULT NULL,
-  `OPER_TIME` char(14) DEFAULT NULL,
-  `REMARK` varchar(512) DEFAULT NULL,
-  `RSV1` varchar(180) DEFAULT NULL,
-  `RSV2` varchar(180) DEFAULT NULL,
-  `RSV3` varchar(180) DEFAULT NULL,
-  `RSV4` varchar(180) DEFAULT NULL,
-  `RSV5` varchar(180) DEFAULT NULL,
-  PRIMARY KEY (`DATA_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Table structure for tb_sysparams
--- ----------------------------
-DROP TABLE IF EXISTS `tb_sysparams`;
-CREATE TABLE `tb_sysparams` (
-  `DATA_ID` char(32) NOT NULL,
-  `DATA_DATE` char(8) DEFAULT NULL,
-  `PARA_NAME` varchar(64) DEFAULT NULL,
-  `PARA_VALUE` varchar(512) DEFAULT NULL,
-  `RSV1` varchar(180) DEFAULT NULL,
-  `RSV2` varchar(180) DEFAULT NULL,
-  `RSV3` varchar(180) DEFAULT NULL,
-  `RSV4` varchar(180) DEFAULT NULL,
-  `RSV5` varchar(180) DEFAULT NULL,
-  PRIMARY KEY (`DATA_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
 -- Table structure for tb_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
@@ -150,33 +65,17 @@ CREATE TABLE `tb_user` (
   KEY `pk_tb_user_index3` (`user_email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for tb_user1
--- ----------------------------
-DROP TABLE IF EXISTS `tb_user1`;
-CREATE TABLE `tb_user1` (
-  `USER_ID` char(32) NOT NULL,
-  `USER_NAME` varchar(64) DEFAULT NULL,
-  `USER_PASSWORD` varchar(32) DEFAULT NULL,
-  `USER_EMAIL` varchar(64) DEFAULT NULL,
-  `USER_PHONE` varchar(20) DEFAULT NULL,
-  `REGISTERED_TIME` char(14) DEFAULT NULL,
-  `REMARKS` varchar(512) DEFAULT NULL,
-  `PASSWORD_LAST_CHANGE_DAY` char(8) DEFAULT NULL,
-  `DATA_STATUS` varchar(2) DEFAULT NULL,
-  `DATA_ADD_DATE` char(8) DEFAULT NULL,
-  `DATA_ADD_TIME` char(14) DEFAULT NULL,
-  `DATA_MOD_DATE` char(8) DEFAULT NULL,
-  `DATA_MOD_TIME` char(14) DEFAULT NULL,
-  `VERIF_CODE` varchar(10) DEFAULT NULL,
-  `RSV1` varchar(180) DEFAULT NULL,
-  `RSV2` varchar(180) DEFAULT NULL,
-  `RSV3` varchar(180) DEFAULT NULL,
-  `RSV4` varchar(180) DEFAULT NULL,
-  `RSV5` varchar(180) DEFAULT NULL,
-  `OPENID` varchar(64) DEFAULT NULL,
-  PRIMARY KEY (`USER_ID`),
-  KEY `pk_tb_user_openid` (`OPENID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `tb_login_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ä¸»é®åºå·',
+  `user_id` bigint(20) NOT NULL COMMENT 'ç¨æ·id',
+  `user_name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ç¨æ·å§å',
+  `login_time` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ç»å½æ¶é´ yyyyMMdd HH:mm:ss',
+  `ip_address` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'ç»å½IP',
+  `ip_address_parse` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'ç»å½IPå°å',
+  `remark` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'å¤æ³¨',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åå»ºæ¶é´',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'æ´æ°æ¶é´',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
