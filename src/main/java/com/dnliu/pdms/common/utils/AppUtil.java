@@ -6,8 +6,8 @@ public class AppUtil {
 	/**
 	 * 用户信息本线程的副本
 	 */
-	private static ThreadLocal<User> CURRENT__LOGIN_USER = new ThreadLocal<User>();
-	//private static ThreadLocal<String> CURRENT__MENU_ID = new ThreadLocal<String>();
+	private static ThreadLocal<User> CURRENT__LOGIN_USER = new ThreadLocal<>();
+	private static ThreadLocal<String> LOGIN_IP = new ThreadLocal<>();
 
 	/**
 	 * 取得当前登录者的userId，未登录鉴权请求无法取到
@@ -35,25 +35,18 @@ public class AppUtil {
 	}
 
 	/**
-	 * 设置用户菜单Id
-	 * @param menuId
-	 */
-//	public static void setCurrentMenuId(String menuId) {
-//		CURRENT__MENU_ID.set(menuId);
-//	}
-
-	/**
-	 * 移除用户菜单Id
-	 */
-//	public static void removeCurrentMenuId() {
-//		CURRENT__MENU_ID.remove();
-//	}
-
-	/**
-	 * 获取用户菜单Id
+	 * 获取登录时的IP
 	 * @return
 	 */
-//	public static String getCurrentMenuId() {
-//		return CURRENT__MENU_ID.get();
-//	}
+	public static String getLoginIp() {
+		return LOGIN_IP.get();
+	}
+
+	/**
+	 * 设置登录时的IP
+	 * @param loginIp
+	 */
+	public static void setLoginIp(String loginIp) {
+		LOGIN_IP.set(loginIp);
+	}
 }

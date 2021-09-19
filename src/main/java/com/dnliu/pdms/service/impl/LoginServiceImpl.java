@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.*;
+import com.dnliu.pdms.dao.LoginLogMapper;
 import com.dnliu.pdms.dao.UserMapper;
+import com.dnliu.pdms.entity.LoginLog;
 import com.dnliu.pdms.entity.User;
 import com.dnliu.pdms.model.Login;
 import com.dnliu.pdms.model.WxLogin;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +31,8 @@ public class LoginServiceImpl implements LoginService {
 
     private UserMapper userMapper;
 
+    private LoginLogMapper loginLogMapper;
+
     @Value("${weixing.appid}")
     private String appid;
 
@@ -38,8 +43,9 @@ public class LoginServiceImpl implements LoginService {
     private String secret;
 
     @Autowired
-    LoginServiceImpl(UserMapper userMapper) {
+    LoginServiceImpl(UserMapper userMapper, LoginLogMapper loginLogMapper) {
         this.userMapper = userMapper;
+        this.loginLogMapper = loginLogMapper;
     }
 
     /**
@@ -72,6 +78,9 @@ public class LoginServiceImpl implements LoginService {
         String token = JwtUtil.createToken(user);
         rspMap.put("token", token);
 
+        // 记录登录日志
+        recordLoginLog(user, "网页版登录");
+
         return rspMap;
     }
 
@@ -95,7 +104,7 @@ public class LoginServiceImpl implements LoginService {
 
         String response = "";
         try {
-            response = HttpClientUtil.get(url);
+            response = HttpClientUtil.get(url, "UTF-8");
         } catch (Exception e) {
             logger.error("获取微信openid错, code: {}, e: ", code, e);
             return ResponseUtil.getCommonFailResponse("获取微信openid失败");
@@ -152,6 +161,9 @@ public class LoginServiceImpl implements LoginService {
             userMapper.updateCheckPwd(map);
         }
 
+        // 记录登录日志
+        recordLoginLog(user, "小程序版登录");
+
         return rspMap;
     }
 
@@ -161,7 +173,7 @@ public class LoginServiceImpl implements LoginService {
      * @return
      */
     private User addWxUser(String openid) {
-        Map map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         String userName = "wx" + DateUtils.getNowTime();
         //用户名
@@ -187,5 +199,29 @@ public class LoginServiceImpl implements LoginService {
         user.setUserName(userName);
 
         return user;
+    }
+
+    /**
+     * 记录登录日志
+     * @param remark
+     */
+    private void recordLoginLog(User user, String remark) {
+        String loginIp = AppUtil.getLoginIp();
+
+        new Thread(() -> {
+            Date nowDate = new Date();
+            LoginLog loginLog = new LoginLog();
+            loginLog.setUserId(user.getId());
+            loginLog.setUserName(user.getUserName());
+            loginLog.setLoginTime(DateUtils.getNowFormatTime());
+            loginLog.setIpAddress(loginIp);
+            String location = WebUtil.getIpLocation(loginIp);
+            loginLog.setIpAddressParse(location);
+            loginLog.setRemark(remark);
+            loginLog.setCreateTime(nowDate);
+            loginLog.setUpdateTime(nowDate);
+
+            loginLogMapper.insert(loginLog);
+        }).start();
     }
 }

@@ -6,6 +6,7 @@ import com.dnliu.pdms.common.ResponseCode;
 import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.JwtUtil;
+import com.dnliu.pdms.common.utils.WebUtil;
 import com.dnliu.pdms.entity.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -30,8 +31,15 @@ public class RequestInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String url = request.getRequestURI();
-		if (url.indexOf("/login") >= 0 || url.indexOf("/wxLogin") >= 0 || url.indexOf("image") >= 0 || url.indexOf("js") >= 0
+		if (url.indexOf("/loginApi/login") >= 0 || url.indexOf("/loginApi/wxLogin") >= 0 || url.indexOf("image") >= 0 || url.indexOf("js") >= 0
 				|| url.indexOf("css") >= 0 || url.indexOf("/registerApi/register") >= 0 || url.indexOf("/kefuback") >= 0) {
+
+			if (url.indexOf("/loginApi/login") >= 0 || url.indexOf("/loginApi/wxLogin") >= 0) {
+				//获取登录IP
+				String loginIp = WebUtil.getRemoteIP(request);
+				AppUtil.setLoginIp(loginIp);
+			}
+
 			return true;
 		}
 
