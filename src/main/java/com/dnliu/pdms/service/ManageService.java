@@ -23,4 +23,6 @@ public interface ManageService {
 
     Map<String, Object> search(Search search);
 
+    Map<String, Object> getLoginLogBatch(GetBatch getBatch);
+
 }

@@ -53,4 +53,12 @@
         limit #{startIndex}, #{pageSize}
     </select>
 
+    <select id="loginLogBatch" parameterType="Map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from tb_login_log order by create_time desc limit #{startRow},#{count}
+  </select>
+
+    <select id="loginLogBatchAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from tb_login_log order by create_time
+  </select>
+
 </mapper>

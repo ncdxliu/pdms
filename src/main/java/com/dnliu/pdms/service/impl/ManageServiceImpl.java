@@ -5,7 +5,10 @@ import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.DateUtils;
 import com.dnliu.pdms.common.utils.SecretUtils;
+import com.dnliu.pdms.common.utils.StringUtil;
+import com.dnliu.pdms.dao.LoginLogMapper;
 import com.dnliu.pdms.dao.ManageMapper;
+import com.dnliu.pdms.entity.LoginLog;
 import com.dnliu.pdms.model.*;
 import com.dnliu.pdms.service.ManageService;
 import org.slf4j.Logger;
@@ -29,9 +32,12 @@ public class ManageServiceImpl implements ManageService {
 
     private ManageMapper manageMapper;
 
+    private LoginLogMapper loginLogMapper;
+
     @Autowired
-    ManageServiceImpl(ManageMapper manageMapper) {
+    ManageServiceImpl(ManageMapper manageMapper, LoginLogMapper loginLogMapper) {
         this.manageMapper = manageMapper;
+        this.loginLogMapper = loginLogMapper;
     }
 
     /**
@@ -333,6 +339,48 @@ public class ManageServiceImpl implements ManageService {
         int count = resultList.size();
         rspMap.put("count", count);
         rspMap.put("data", resultList);
+
+        return rspMap;
+    }
+
+    /**
+     * 批量查询数据
+     * @param getBatch
+     * @return
+     */
+    @Override
+    public Map<String, Object> getLoginLogBatch(GetBatch getBatch) {
+        Map<String, Object> rspMap = new HashMap<>();
+
+        logger.info(JSON.toJSONString(getBatch));
+
+        String userName = AppUtil.getUser().getUserName();
+        if (StringUtil.isBlank(userName) || !"liufuhua".equals(userName)) {
+            return ResponseUtil.getCommonFailResponse("该功能还未开发。。。");
+        }
+
+        Map<String, Object> map = new HashMap<>();
+        int count = getBatch.getCount();
+        int pageNum = getBatch.getPageNum();
+        if (pageNum < 0) {
+            return ResponseUtil.getCommonFailResponse("前端传入的查询页码错误");
+        }
+
+        List<LoginLog> result;
+        if (pageNum > 0) {
+            int startRow = (pageNum - 1) * count;
+            map.put("count", count);
+            map.put("startRow", startRow);
+
+            result = loginLogMapper.loginLogBatch(map);
+        } else {
+            result = loginLogMapper.loginLogBatchAll();
+        }
+
+        rspMap.put("rspCode", "R0000");
+        rspMap.put("rspMsg", "查询成功");
+        rspMap.put("count", result.size());
+        rspMap.put("data", result);
 
         return rspMap;
     }

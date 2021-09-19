@@ -1,9 +1,9 @@
 package com.dnliu.pdms.dao;
 
 import com.dnliu.pdms.entity.LoginLog;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author dnliu
@@ -12,5 +12,7 @@ import java.util.List;
 public interface LoginLogMapper {
     int insert(LoginLog record);
 
-    List<LoginLog> selectLoginLogByPage(@Param("startIndex") Integer startIndex, @Param("pageSize") Integer pageSize);
+    List<LoginLog> loginLogBatch(Map<String, Object> map);
+
+    List<LoginLog> loginLogBatchAll();
 }

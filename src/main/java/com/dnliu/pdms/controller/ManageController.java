@@ -126,7 +126,6 @@ public class ManageController {
 	 * @return
 	 * @throws
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("/getBatch")
 	public @ResponseBody Map<String, Object> getBatch(@RequestBody GetBatch getBatch) {
 		if (getBatch == null || StringUtil.isBlank(getBatch.getDataType())) {
@@ -144,7 +143,6 @@ public class ManageController {
 	 * @return
 	 * @throws
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("/getSingle")
 	public @ResponseBody Map<String, Object> getSingle(@RequestBody GetSingle getSingle) {
 		if (getSingle == null || getSingle.getId() == null) {
@@ -161,7 +159,6 @@ public class ManageController {
 	 * @return
 	 * @throws
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("/search")
 	public @ResponseBody Map<String, Object> search(@RequestBody Search search) {
 		if (search == null || StringUtil.isBlank(search.getSearchStr())) {
@@ -169,5 +166,18 @@ public class ManageController {
 		}
 		return manageService.search(search);
 	}
-	
+
+	/**
+	 * 登录日志批量查询接口
+	 * @param getBatch
+	 * @return
+	 */
+	@RequestMapping("/getLoginLogBatch")
+	public @ResponseBody Map<String, Object> getLoginLogBatch(@RequestBody GetBatch getBatch) {
+		if (getBatch == null) {
+			return ResponseUtil.getCommonFailResponse("输入参数有误");
+		}
+
+		return manageService.getLoginLogBatch(getBatch);
+	}
 }
