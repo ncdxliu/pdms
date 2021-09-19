@@ -1,6 +1,5 @@
 package com.dnliu.pdms.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.*;
@@ -58,8 +57,6 @@ public class LoginServiceImpl implements LoginService {
         // 获取前端传入的参数
         String userName = login.getUserName();
         String password = login.getUserPassword();
-        logger.info("--------[{}]登录请求-------", userName);
-        logger.info("login: {}", JSON.toJSONString(login));
 
         // 健壮性校验
         if (StringUtil.isEmpty(userName) || StringUtil.isEmpty(password)) {
@@ -97,10 +94,7 @@ public class LoginServiceImpl implements LoginService {
 
         String code = wxLogin.getCode();
         String userPassword = wxLogin.getUserPassword();
-        logger.info("code: {}", code);
-        logger.info("userPassword: {}",  userPassword);
         String url = code2SessionUrl + "?appid=" + appid + "&secret=" + secret + "&js_code=" + code + "&grant_type=authorization_code";
-        logger.info("url: {}", url);
 
         String response = "";
         try {
@@ -109,7 +103,6 @@ public class LoginServiceImpl implements LoginService {
             logger.error("获取微信openid错, code: {}, e: ", code, e);
             return ResponseUtil.getCommonFailResponse("获取微信openid失败");
         }
-        logger.info("微信返回: " + response);
 
         JSONObject object = JSONObject.parseObject(response);
         String openid = (String) object.get("openid");
@@ -149,8 +142,6 @@ public class LoginServiceImpl implements LoginService {
         rspMap.put("token", token);
         rspMap.put("rspCode", "R0000");
         rspMap.put("rspMsg", "登录成功");
-
-        logger.info("----------[" + userName + "]登录成功----------");
 
         //是否需要登录密码设置
         if ("1".equals(wxLogin.getCheckPwd())) {

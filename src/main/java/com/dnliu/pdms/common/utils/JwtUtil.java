@@ -62,7 +62,7 @@ public class JwtUtil {
             jwt = verifier.verify(token);
         } catch (Exception e) {
             if (StringUtil.isNotBlank(e.getMessage()) && e.getMessage().indexOf("The Token has expired on") >= 0) {
-                logger.error("token已过期, token: {}", token);
+                //logger.error("token已过期, token: {}", token);
                 //解码异常则抛出异常
                 return null;
             }

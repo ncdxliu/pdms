@@ -1,11 +1,9 @@
 package com.dnliu.pdms.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.DateUtils;
 import com.dnliu.pdms.common.utils.SecretUtils;
-import com.dnliu.pdms.common.utils.StringUtil;
 import com.dnliu.pdms.dao.LoginLogMapper;
 import com.dnliu.pdms.dao.ManageMapper;
 import com.dnliu.pdms.entity.LoginLog;
@@ -53,9 +51,7 @@ public class ManageServiceImpl implements ManageService {
             return ResponseUtil.getCommonFailResponse("新增的数据内容太大");
         }
 
-        logger.info(JSON.toJSONString(addData));
-
-        long userId = AppUtil.getUser().getId();
+        Long userId = AppUtil.getUser().getId();
 
         String content = addData.getContent();
         try {
@@ -98,9 +94,7 @@ public class ManageServiceImpl implements ManageService {
             return ResponseUtil.getCommonFailResponse("新增的数据内容太大");
         }
 
-        logger.info(JSON.toJSONString(updateData));
-
-        long userId = AppUtil.getUser().getId();
+        Long userId = AppUtil.getUser().getId();
 
         String content = updateData.getContent();
         try {
@@ -139,9 +133,7 @@ public class ManageServiceImpl implements ManageService {
     public Map<String, Object> deleteDate(DeleteData deleteData) {
         Map<String, Object> rspMap = new HashMap<>();
 
-        logger.info(JSON.toJSONString(deleteData));
-
-        long userId = AppUtil.getUser().getId();
+        Long userId = AppUtil.getUser().getId();
 
         Map<String, Object> map = new HashMap<>();
         map.put("id", deleteData.getId());
@@ -165,9 +157,7 @@ public class ManageServiceImpl implements ManageService {
     public Map<String, Object> updateContentByTitle(UpdateContentByTitle updateContentByTitle) {
         Map<String, Object> rspMap = new HashMap<>();
 
-        logger.info(JSON.toJSONString(updateContentByTitle));
-
-        long userId = AppUtil.getUser().getId();
+        Long userId = AppUtil.getUser().getId();
 
         String content = updateContentByTitle.getContent();
         try {
@@ -200,9 +190,7 @@ public class ManageServiceImpl implements ManageService {
     public Map<String, Object> getBatch(GetBatch getBatch) {
         Map<String, Object> rspMap = new HashMap<>();
 
-        logger.info(JSON.toJSONString(getBatch));
-
-        long userId = AppUtil.getUser().getId();
+        Long userId = AppUtil.getUser().getId();
 
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
@@ -241,9 +229,7 @@ public class ManageServiceImpl implements ManageService {
     public Map<String, Object> getSingle(GetSingle getSingle) {
         Map<String, Object> rspMap = new HashMap<>();
 
-        logger.info(JSON.toJSONString(getSingle));
-
-        long userId = AppUtil.getUser().getId();
+        Long userId = AppUtil.getUser().getId();
 
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
@@ -286,8 +272,7 @@ public class ManageServiceImpl implements ManageService {
     public Map<String, Object> search(Search search) {
         Map<String, Object> rspMap = new HashMap<>();
 
-        logger.info(JSON.toJSONString(search));
-        long userId = AppUtil.getUser().getId();
+        Long userId = AppUtil.getUser().getId();
 
         String searchFlag = search.getSeachFlag();
         String searchStr = search.getSearchStr();
@@ -352,12 +337,10 @@ public class ManageServiceImpl implements ManageService {
     public Map<String, Object> getLoginLogBatch(GetBatch getBatch) {
         Map<String, Object> rspMap = new HashMap<>();
 
-        logger.info(JSON.toJSONString(getBatch));
-
-        String userName = AppUtil.getUser().getUserName();
-        if (StringUtil.isBlank(userName) || !"liufuhua".equals(userName)) {
-            return ResponseUtil.getCommonFailResponse("该功能还未开发。。。");
-        }
+//        String userName = AppUtil.getUser().getUserName();
+//        if (StringUtil.isBlank(userName) || !"liufuhua".equals(userName)) {
+//            return ResponseUtil.getCommonFailResponse("该功能还未开发。。。");
+//        }
 
         Map<String, Object> map = new HashMap<>();
         int count = getBatch.getCount();

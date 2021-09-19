@@ -1,6 +1,5 @@
 package com.dnliu.pdms.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.DateUtils;
@@ -12,8 +11,6 @@ import com.dnliu.pdms.model.Register;
 import com.dnliu.pdms.model.ResetCheckPwd;
 import com.dnliu.pdms.model.UpdatePassword;
 import com.dnliu.pdms.service.RegisterService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +23,6 @@ import java.util.Map;
  */
 @Service
 public class RegisterServiceImpl implements RegisterService {
-    private static final Logger logger = LoggerFactory.getLogger(RegisterServiceImpl.class);
-
     private UserMapper userMapper;
 
     @Autowired
@@ -97,8 +92,6 @@ public class RegisterServiceImpl implements RegisterService {
     public Map<String, Object> updatePassword(UpdatePassword updatePassword) {
         Map<String, Object> rspMap = new HashMap<>();
 
-        logger.info(JSON.toJSONString(updatePassword));
-
         String userName = AppUtil.getUser().getUserName();
 
         User user = userMapper.selectByNamePwd(userName, updatePassword.getOldPassword());
@@ -127,8 +120,6 @@ public class RegisterServiceImpl implements RegisterService {
     public Map<String, Object> resetCheckPwd(ResetCheckPwd resetCheckPwd) {
         Map<String, Object> rspMap = new HashMap<>();
 
-        logger.info(JSON.toJSONString(resetCheckPwd));
-
         long userId = AppUtil.getUser().getId();
 
         String checkPwd = resetCheckPwd.getCheckPwd();
@@ -148,9 +139,7 @@ public class RegisterServiceImpl implements RegisterService {
     public Map<String, Object> getCheckPwd(GetCheckPwd getCheckPwd) {
         Map<String, Object> rspMap = new HashMap<>();
 
-        logger.info(JSON.toJSONString(getCheckPwd));
-
-        long userId = AppUtil.getUser().getId();
+        Long userId = AppUtil.getUser().getId();
 
         User user = userMapper.selectUserById(userId);
 
