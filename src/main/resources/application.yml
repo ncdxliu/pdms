@@ -7,9 +7,9 @@ mybatis:
 
 spring:
   datasource:
-    url: jdbc:mysql://47.107.126.3:3306/cbs?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: cbs
-    password: Cbs@123456
+    url: jdbc:mysql://${db.url}?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: ${db.username}
+    password: ${db.password}
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:

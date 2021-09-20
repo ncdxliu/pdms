@@ -35,7 +35,7 @@
 		<!-- 将业务dao接口填写进去,并用控制台输出即可 -->
 		<logger name="com.dnliu.pdms.dao" level="INFO" additivity="false"/>
 
-		<logger name="com.alibaba.druid.pool" level="INFO" additivity="false"/>
+		<!-- <logger name="com.alibaba.druid.pool" level="INFO" additivity="false"/> -->
 
 		<root level="INFO">
 			<appender-ref ref="console" />

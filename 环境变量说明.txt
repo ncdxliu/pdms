@@ -1,0 +1,1 @@
+-Dlog.home=/Users/dnliu/Desktop/test/log -Ddb.url=数据库ip:port/数据库名 -Ddb.username=数据库用户 -Ddb.password=数据库密码
