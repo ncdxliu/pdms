@@ -8,7 +8,7 @@
     </select>
 
     <select id="selectUserByOpenid" resultType="com.dnliu.pdms.entity.User">
-      select id, user_name as userName, check_pwd as checkPwd from tb_user where openid = #{openid} status = '0'
+      select id, user_name as userName, user_password as userPassword, check_pwd as checkPwd from tb_user where openid = #{openid} and status = '0'
     </select>
 
     <insert id="addWxUser" parameterType="Map">

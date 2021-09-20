@@ -95,6 +95,7 @@ public class LoginServiceImpl implements LoginService {
         String code = wxLogin.getCode();
         String userPassword = wxLogin.getUserPassword();
         String url = code2SessionUrl + "?appid=" + appid + "&secret=" + secret + "&js_code=" + code + "&grant_type=authorization_code";
+        //logger.info("url: {}", url);
 
         String response = "";
         try {
@@ -103,11 +104,14 @@ public class LoginServiceImpl implements LoginService {
             logger.error("获取微信openid错, code: {}, e: ", code, e);
             return ResponseUtil.getCommonFailResponse("获取微信openid失败");
         }
+        //logger.info("response: {}", response);
 
         JSONObject object = JSONObject.parseObject(response);
         String openid = (String) object.get("openid");
+        //logger.info("openid: {}", openid);
 
         User user = userMapper.selectUserByOpenid(openid);
+        //logger.info("user: {}", JSON.toJSONString(user));
         //新用户
         if (null == user) {
             user = addWxUser(openid);
@@ -145,7 +149,7 @@ public class LoginServiceImpl implements LoginService {
 
         //是否需要登录密码设置
         if ("1".equals(wxLogin.getCheckPwd())) {
-            Map map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("userId", user.getId());
             map.put("checkPwd", "1");
 

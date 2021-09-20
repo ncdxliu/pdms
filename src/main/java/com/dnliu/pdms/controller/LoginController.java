@@ -4,6 +4,7 @@ import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.StringUtil;
 import com.dnliu.pdms.model.Login;
+import com.dnliu.pdms.model.WxLogin;
 import com.dnliu.pdms.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -43,6 +44,21 @@ public class LoginController {
         }
 
         return loginService.login(login);
+    }
+
+    /**
+     * 微信登录
+     * @param wxLogin
+     * @return
+     */
+    @RequestMapping("/wxLogin")
+    public Map<String, Object> wxLogin(@RequestBody WxLogin wxLogin) {
+        if (wxLogin == null || StringUtil.isBlank(wxLogin.getCode())
+                || StringUtil.isBlank(wxLogin.getUserPassword())) {
+            return ResponseUtil.getCommonFailResponse("请输入用户名和密码!");
+        }
+
+        return loginService.wxLogin(wxLogin);
     }
 
     @RequestMapping("/loginOut")
