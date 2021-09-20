@@ -4,6 +4,7 @@ import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.DateUtils;
 import com.dnliu.pdms.common.utils.SecretUtils;
+import com.dnliu.pdms.common.utils.StringUtil;
 import com.dnliu.pdms.dao.LoginLogMapper;
 import com.dnliu.pdms.dao.ManageMapper;
 import com.dnliu.pdms.entity.LoginLog;
@@ -337,10 +338,10 @@ public class ManageServiceImpl implements ManageService {
     public Map<String, Object> getLoginLogBatch(GetBatch getBatch) {
         Map<String, Object> rspMap = new HashMap<>();
 
-//        String userName = AppUtil.getUser().getUserName();
-//        if (StringUtil.isBlank(userName) || !"liufuhua".equals(userName)) {
-//            return ResponseUtil.getCommonFailResponse("该功能还未开发。。。");
-//        }
+        String userName = AppUtil.getUser().getUserName();
+        if (StringUtil.isBlank(userName) || !"liufuhua".equals(userName)) {
+            return ResponseUtil.getCommonFailResponse("该功能还未开发。。。");
+        }
 
         Map<String, Object> map = new HashMap<>();
         int count = getBatch.getCount();
