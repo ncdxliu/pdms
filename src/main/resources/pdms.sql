@@ -66,15 +66,15 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tb_login_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ä¸»é®åºå·',
-  `user_id` bigint(20) NOT NULL COMMENT 'ç¨æ·id',
-  `user_name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ç¨æ·å§å',
-  `login_time` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ç»å½æ¶é´ yyyyMMdd HH:mm:ss',
-  `ip_address` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'ç»å½IP',
-  `ip_address_parse` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'ç»å½IPå°å',
-  `remark` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'å¤æ³¨',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åå»ºæ¶é´',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'æ´æ°æ¶é´',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键序号',
+  `user_id` bigint(20) NOT NULL COMMENT '用户id',
+  `user_name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户姓名',
+  `login_time` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '登录时间yyyy-MM-dd HH:mm:ss',
+  `ip_address` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '登录IP',
+  `ip_address_parse` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '登录IP地址归属',
+  `remark` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
