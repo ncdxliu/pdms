@@ -10,8 +10,7 @@ import com.dnliu.pdms.entity.User;
 import com.dnliu.pdms.model.Login;
 import com.dnliu.pdms.model.WxLogin;
 import com.dnliu.pdms.service.LoginService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,9 +24,8 @@ import java.util.Map;
  * @date 2021-09-11 20:14
  */
 @Service
+@Slf4j
 public class LoginServiceImpl implements LoginService {
-    private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
-
     private UserMapper userMapper;
 
     private LoginLogMapper loginLogMapper;
@@ -101,7 +99,7 @@ public class LoginServiceImpl implements LoginService {
         try {
             response = HttpClientUtil.get(url, "UTF-8");
         } catch (Exception e) {
-            logger.error("获取微信openid错, code: {}, e: ", code, e);
+            log.error("获取微信openid错, code: {}, e: ", code, e);
             return ResponseUtil.getCommonFailResponse("获取微信openid失败");
         }
         //logger.info("response: {}", response);
@@ -115,7 +113,7 @@ public class LoginServiceImpl implements LoginService {
         //新用户
         if (null == user) {
             user = addWxUser(openid);
-            logger.info("--------微信用户[{}]注册完成--------", user.getUserName());
+            log.info("--------微信用户[{}]注册完成--------", user.getUserName());
             rspMap.put("isNew", "1");
         } else {
             userName = user.getUserName();
@@ -123,7 +121,7 @@ public class LoginServiceImpl implements LoginService {
             if (null == user.getCheckPwd() || "0".equals(user.getCheckPwd())) {
                 //密码校验
                 if (!userPassword.equals(user.getUserPassword())) {
-                    logger.info("密码不正确, userName: {}, userPassword: {}", userName, userPassword);
+                    log.info("密码不正确, userName: {}, userPassword: {}", userName, userPassword);
                     return ResponseUtil.getCommonFailResponse("密码不正确");
                 }
 

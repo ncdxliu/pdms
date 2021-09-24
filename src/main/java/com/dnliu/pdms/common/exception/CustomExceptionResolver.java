@@ -1,8 +1,7 @@
 package com.dnliu.pdms.common.exception;
 
 import com.alibaba.fastjson.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -24,10 +23,8 @@ import java.util.Map;
  *
  */
 @Component
+@Slf4j
 public class CustomExceptionResolver implements HandlerExceptionResolver {
-	protected final Logger logger = LoggerFactory.getLogger(CustomExceptionResolver.class);
-
-	@SuppressWarnings({ "rawtypes", "unchecked", "static-access" })
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {
@@ -35,7 +32,7 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
 		// 解析异常类型
 		CustomException customException = null;
 		StackTraceElement stackTraceElement = ex.getStackTrace()[1];
-		logger.info("异常文件名:{}|异常方法名:{}|异常行号: {}|异常原因:{}", stackTraceElement.getFileName(), stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), ex.getLocalizedMessage());
+		log.info("异常文件名:{}|异常方法名:{}|异常行号: {}|异常原因:{}", stackTraceElement.getFileName(), stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), ex.getLocalizedMessage());
 		if (ex instanceof CustomException) {
 			customException = (CustomException) ex;
 		} else {
@@ -50,7 +47,7 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
 		 * modelAndView.setViewName("error/error");
 		 */
 
-		logger.error("异常文件名: {}|异常方法名:{}|异常行号: {}|异常原因: {}, e: ", stackTraceElement.getFileName(), stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), ex.getLocalizedMessage(), ex);
+		log.error("异常文件名: {}|异常方法名:{}|异常行号: {}|异常原因: {}, e: ", stackTraceElement.getFileName(), stackTraceElement.getMethodName(), stackTraceElement.getLineNumber(), ex.getLocalizedMessage(), ex);
 		
 		Map rspMap = new HashMap<>();
     	rspMap.put("rspCode", "R9999");
@@ -67,10 +64,10 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
         try {
 			response.getWriter().write(result.toJSONString(rspMap));
 		} catch (IOException e) {
-			logger.error("回写响应报文失败, e: ", e);
+			log.error("回写响应报文失败, e: ", e);
 		}
 
-		logger.info("错误信息: {}", message);
+		log.info("错误信息: {}", message);
 		
 		return modelAndView;
 	}

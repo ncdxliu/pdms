@@ -10,8 +10,7 @@ import com.dnliu.pdms.dao.ManageMapper;
 import com.dnliu.pdms.entity.LoginLog;
 import com.dnliu.pdms.model.*;
 import com.dnliu.pdms.service.ManageService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +25,8 @@ import java.util.Map;
  * @date 2021-09-12 22:36
  */
 @Service
+@Slf4j
 public class ManageServiceImpl implements ManageService {
-    private static final Logger logger = LoggerFactory.getLogger(ManageServiceImpl.class);
-
     private ManageMapper manageMapper;
 
     private LoginLogMapper loginLogMapper;
@@ -58,7 +56,7 @@ public class ManageServiceImpl implements ManageService {
         try {
             content = SecretUtils.encryption(content);
         } catch (Exception e) {
-            logger.error("数据加密失败, content: [{}], e: ", content, e);
+            log.error("数据加密失败, content: [{}], e: ", content, e);
             return ResponseUtil.getCommonFailResponse("数据加密失败");
         }
 
@@ -101,7 +99,7 @@ public class ManageServiceImpl implements ManageService {
         try {
             content = SecretUtils.encryption(content);
         } catch (Exception e) {
-            logger.error("数据加密失败, content: [{}], e: ", content, e);
+            log.error("数据加密失败, content: [{}], e: ", content, e);
             return ResponseUtil.getCommonFailResponse("数据加密失败");
         }
 
@@ -164,7 +162,7 @@ public class ManageServiceImpl implements ManageService {
         try {
             content = SecretUtils.encryption(content);
         } catch (Exception e) {
-            logger.error("数据加密失败, content: [{}], e: ", content, e);
+            log.error("数据加密失败, content: [{}], e: ", content, e);
             return ResponseUtil.getCommonFailResponse("数据加密失败");
         }
 
@@ -305,7 +303,7 @@ public class ManageServiceImpl implements ManageService {
                 try {
                     content = SecretUtils.decrypt(content);
                 } catch (Exception e) {
-                    logger.error("解密失败, id: {}, content: {}, e: ", map.get("id"), content, e);
+                    log.error("解密失败, id: {}, content: {}, e: ", map.get("id"), content, e);
                     continue;
                 }
 

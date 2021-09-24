@@ -6,8 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.dnliu.pdms.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -18,8 +17,8 @@ import java.util.Map;
  * @author dnliu
  * @date 2021-09-11 20:46
  */
+@Slf4j
 public class JwtUtil {
-    private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
     /**
      * 密钥
      */
@@ -67,8 +66,8 @@ public class JwtUtil {
                 return null;
             }
 
-            logger.error(e.getMessage());
-            logger.error("token解码异常, e: ", e);
+            log.error(e.getMessage());
+            log.error("token解码异常, e: ", e);
             //解码异常则抛出异常
             return null;
         }

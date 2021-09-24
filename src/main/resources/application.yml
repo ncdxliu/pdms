@@ -38,9 +38,7 @@ spring:
       useGlobalDataSourceStat: true
 
 logging:
-  config: classpath:log4j2.xml
-  level:
-    com.dnliu.pdms.dao: debug
+  config: classpath:logback-spring.xml
 
 #微信配置
 weixing:

@@ -6,8 +6,7 @@ import com.dnliu.pdms.common.ResponseUtil;
 import com.dnliu.pdms.common.utils.AppUtil;
 import com.dnliu.pdms.common.utils.JwtUtil;
 import com.dnliu.pdms.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +19,8 @@ import java.util.Map;
  * @author dnliu
  * @date 2021-09-11 20:50
  */
+@Slf4j
 public class JwtFilter implements Filter {
-    private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -41,8 +39,8 @@ public class JwtFilter implements Filter {
 
         //获取 header里的token
         final String token = request.getHeader("authorization");
-        logger.info("method: {}", request.getMethod());
-        logger.info("token: {}", token);
+        log.info("method: {}", request.getMethod());
+        log.info("token: {}", token);
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             chain.doFilter(request, response);
