@@ -7,6 +7,8 @@
  */
 package com.dnliu.pdms.dao;
 
+import org.apache.ibatis.annotations.MapKey;
+
 import java.util.List;
 import java.util.Map;
 
@@ -27,15 +29,20 @@ public interface ManageMapper {
 
 	void delete(Map<String, Object> map);
 
+	@MapKey("id")
 	List<Map<String, Object>> batch(Map<String, Object> map);
 
+	@MapKey("id")
 	List<Map<String, Object>> batchAll(Map<String, Object> map);
 
+	@MapKey("id")
 	Map<String, Object> single(Map<String, Object> map);
 
 	int countData(Map<String, Object> map);
 
+	@MapKey("id")
 	List<Map<String, Object>> searchTitle(Map<String, Object> map);
 
+	@MapKey("id")
 	List<Map<String, Object>> searchAll(long userId);
 }
