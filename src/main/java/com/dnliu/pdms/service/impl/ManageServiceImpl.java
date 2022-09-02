@@ -282,6 +282,7 @@ public class ManageServiceImpl implements ManageService {
             Map<String, Object> map = new HashMap<>();
             map.put("userId", userId);
             map.put("searchStr", searchStr);
+            map.put("upperSearchStr", searchStr.toUpperCase());
             resultList = manageMapper.searchTitle(map);
         } else {  //搜索内容和标题
             List<Map<String, Object>> tmpMap = manageMapper.searchAll(userId);
@@ -290,7 +291,7 @@ public class ManageServiceImpl implements ManageService {
             for (int i = 0; i < size; i++) {
                 Map<String, Object> map = tmpMap.get(i);
                 String title = (String) map.get("title");
-                if (title.contains(searchStr)) {
+                if (StringUtil.isNotBlank(title) && title.toUpperCase().contains(searchStr.toUpperCase())) {
                     Map<String, Object> rsMap = new HashMap<>();
                     rsMap.put("id", map.get("id"));
                     rsMap.put("title", map.get("title"));
@@ -300,6 +301,10 @@ public class ManageServiceImpl implements ManageService {
                 }
 
                 String content = (String) map.get("content1");
+                if (StringUtil.isBlank(content)) {
+                    continue;
+                }
+
                 try {
                     content = SecretUtils.decrypt(content);
                 } catch (Exception e) {
@@ -307,7 +312,7 @@ public class ManageServiceImpl implements ManageService {
                     continue;
                 }
 
-                if (content.contains(searchStr)) {
+                if (content.toUpperCase().contains(searchStr.toUpperCase())) {
                     Map<String, Object> rsMap = new HashMap<>();
                     rsMap.put("id", map.get("id"));
                     rsMap.put("title", map.get("title"));

@@ -47,7 +47,7 @@
   </select>
   
   <select id="searchTitle" parameterType="Map" resultType="Map">
-    select id, title from tb_content where user_id=#{userId,jdbcType=BIGINT} and status = '0' and title like concat(concat('%',#{searchStr}),'%')
+    select id, title from tb_content where user_id=#{userId,jdbcType=BIGINT} and status = '0' and (title like concat(concat('%',#{searchStr}),'%') or title like concat(concat('%',#{upperSearchStr}),'%'))
   </select>
 
   <select id="searchAll" parameterType="Long" resultType="Map">
